@@ -14,6 +14,7 @@
     "copy": "rm -rf public/* && cp -R dist/* public/"
   },
   "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.11",
     "firebase": "^5.2.0",
     "nuxt": "^1.4.1",
     "nuxt-firebase": "0.0.3",
@@ -21,9 +22,12 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "bulma": "^0.7.1",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3"
   }
 }
