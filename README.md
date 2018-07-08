@@ -15,10 +15,6 @@ $ npm run dev
 $ npm run build
 $ npm start
 
-# edit .envrc
-firebaseのプロジェクト作って、
-「ウェブアプリに Firebase を追加」からkeyとかを入れる
-
 # generate static project at localhost:5000
 $ npm run generate
 $ npm run copy
@@ -26,6 +22,19 @@ $ firebase serve
 
 # deploy
 $ firebase deploy
+```
+
+### create .envrc
+firebaseのプロジェクト作って、
+「ウェブアプリに Firebase を追加」からkeyとかを入れる
+```
+# .envrc
+export APIKEY=
+export AUTHDOMAIN=
+export DATABASEURL=
+export PROJECTID=
+export STORAGEBUCKET=
+export MESSAGINGSENDERID=
 ```
 
 
