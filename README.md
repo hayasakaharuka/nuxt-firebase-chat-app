@@ -17,6 +17,7 @@ $ npm start
 
 # generate static project at localhost:5000
 $ npm run generate
+$ mkdir public
 $ npm run copy
 $ firebase serve
 
@@ -37,5 +38,11 @@ export STORAGEBUCKET=
 export MESSAGINGSENDERID=
 ```
 
+その他
+```
+npm i node-sass sass-loader
+npm i -g firebase-tools
+firebase use --add ### default
+```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).

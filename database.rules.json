@@ -2,7 +2,7 @@
   "rules": {
     ".read": false,
     ".write": false,
-    "message": {
+    "messages": {
       ".read": "auth != null",
       ".write": "auth != null"
     }

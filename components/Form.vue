@@ -23,7 +23,7 @@ export default {
       const usr = this.$store.state.user.user
       if (usr.uid && this.input.length) {
         // firebase にメッセージを追加
-        firebase.database().ref('message').push({
+        firebase.database().ref('messages').push({
           message: this.input,
           name: usr.displayName,
           image: usr.photoURL
