@@ -8,6 +8,7 @@
           <nl2br tag='div' :text='message'/>
         </div>
       </div>
+      <nuxt-link :to="`/messages/${key}`" class="btn btn-dark btn-sm">詳細</nuxt-link>
     </section>
   </transition-group>
 </template>
@@ -15,6 +16,7 @@
 <script>
 import firebase from '@/plugins/firebase'
 import Nl2br from 'vue-nl2br'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -27,8 +29,7 @@ export default {
   },
   created() {
     const ref_message = firebase.database().ref('messages')
-    const user = this.$store.state.user.user
-    if (user) {
+    if (this.user) {
       // message に変更があったときのハンドラを登録
       ref_message.limitToLast(10).on('child_added', this.childAdded)
     } else {
@@ -54,6 +55,9 @@ export default {
       })
       this.scrollBottom()
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 }
 </script>

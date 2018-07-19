@@ -3,8 +3,11 @@
     ".read": false,
     ".write": false,
     "messages": {
-      ".read": "auth != null",
+      ".read": true,
       ".write": "auth != null"
     }
   }
 }
+
+//".read": "auth != null",
+//".write": "auth != null"

@@ -2,15 +2,16 @@
   <form action='' @submit.prevent='doSend' class='form'>
     <b-textarea
       v-model='input'
-      :disabled='!this.$store.state.user.user.uid'
+      :disabled='checkUser()'
       @keydown.enter.exact.prevent='doSend'
       placeholder='Message'></b-textarea>
-    <b-button type='submit' :disabled='!this.$store.state.user.user.uid' variant='info send-button'>Send</b-button>
+    <b-button type='submit' :disabled='checkUser()' variant='info send-button'>Send</b-button>
   </form>
 </template>
 
 <script>
 import firebase from '@/plugins/firebase'
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -18,11 +19,15 @@ export default {
       input: ''
     }
   },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.$store.dispatch('writeUser', user)
+    })
+  },
   methods: {
     doSend() {
-      const usr = this.$store.state.user.user
+      const usr = this.user.user
       if (usr.uid && this.input.length) {
-        // firebase にメッセージを追加
         firebase.database().ref('messages').push({
           message: this.input,
           name: usr.displayName,
@@ -31,7 +36,13 @@ export default {
           this.input = ''
         })
       }
+    },
+    checkUser() {
+      return !(this.user && this.user.uid)
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 }
 </script>

@@ -2,9 +2,9 @@
   <div id='app'>
     <header class='header'>
       <h1 class='header-title'>Chat App</h1>
-      <div v-if='this.$store.state.user.user.uid' key='login' class='header-user-info'>
-        <img class='header-user-image' :src='this.$store.state.user.user.photoURL' width='40' height='40'>
-        <p class='header-user-name'>{{ this.$store.state.user.user.displayName }}</p>
+      <div v-if='user && user.uid' key='login' class='header-user-info'>
+        <img class='header-user-image' :src='user.photoURL' width='40' height='40'>
+        <p class='header-user-name'>{{ user.displayName }}</p>
         <b-button variant='primary btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
       </div>
       <div v-else key='logout' class='header-login'>
@@ -12,7 +12,7 @@
       </div>
     </header>
 
-    <div v-if='this.$store.state.user.user.uid'>
+    <div v-if='user && user.uid'>
       <ChatItem />
     </div>
     <Form />
@@ -23,6 +23,7 @@
 import firebase from '@/plugins/firebase'
 import ChatItem from '@/components/ChatItem.vue'
 import Form from '@/components/Form.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -31,8 +32,7 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
-      const loginUser = user ? user : this.$store.state.user.user
-      this.$store.dispatch('user/writeUser', loginUser)
+      this.$store.dispatch('writeUser', user)
     })
   },
   methods: {
@@ -42,13 +42,11 @@ export default {
     },
     doLogout() {
       firebase.auth().signOut()
-      this.$store.dispatch('user/writeUser', {})
-    },
-    scrollBottom() {
-      this.$nextTick(() => {
-        window.scrollTo(0, document.body.clientHeight)
-      })
+      this.$store.dispatch('writeUser', {})
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 }
 </script>
@@ -92,32 +90,5 @@ export default {
         border-radius: 20px;
       }
     }
-  }
-  .form {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    background: #f5f5f5;
-  }
-  .form textarea {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    font-weight: bold;
-    height: 3em;
-    line-height: 3em;
-    padding: 0 .5em;
-    resize: none;
-    width: calc(100% - 6em);
-
-    &::placeholder {
-      color: lightgray;
-    }
-  }
-  .send-button {
-    height: 3em;
   }
 </style>
