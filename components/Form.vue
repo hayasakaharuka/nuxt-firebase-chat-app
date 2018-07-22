@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     doSend() {
-      const usr = this.user.user
+      const usr = this.user
       if (usr.uid && this.input.length) {
         firebase.database().ref('messages').push({
           message: this.input,
@@ -55,8 +55,11 @@ export default {
     align-items: center;
     bottom: 0;
     height: 100px;
-    width: 100%;
+    width: 75%;
     background: #f5f5f5;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 
   .form textarea {

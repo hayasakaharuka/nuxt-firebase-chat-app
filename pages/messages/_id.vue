@@ -8,7 +8,8 @@
         <b-button variant='primary btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
       </div>
       <div v-else key='logout' class='header-login'>
-        <b-button variant='info btn-sm' type='button' @click='doLogin'>ログイン</b-button>
+        <b-button variant='info btn-sm' type='button' @click='twitterLogin'>Twitter ログイン</b-button>
+        <b-button variant='info btn-sm' type='button' @click='googleLogin'>Google ログイン</b-button>
       </div>
     </header>
     <h1>詳細</h1>
@@ -35,8 +36,16 @@
       })
     },
     methods: {
-      doLogin() {
+      twitterLogin() {
         const provider = new firebase.auth.TwitterAuthProvider()
+        firebase.auth().signInWithPopup(provider)
+      },
+      googleLogin() {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        firebase.auth().signInWithPopup(provider)
+      },
+      facebookLogin() {
+        const provider = new firebase.auth.FacebookAuthProvider()
         firebase.auth().signInWithPopup(provider)
       },
       doLogout() {

@@ -65,7 +65,7 @@ export default {
 <style lang='scss' scoped>
   .content {
     margin: 0 auto;
-    padding: 80px 10px 30px;
+    padding: 40px 10px 30px;
     max-width: 600px;
   }
 
