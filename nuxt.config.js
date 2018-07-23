@@ -25,6 +25,7 @@ module.exports = {
   modules: [
     ['bootstrap-vue/nuxt', { css: false }]
   ],
+  mode: 'spa',
   /*
   ** Build configuration
   */

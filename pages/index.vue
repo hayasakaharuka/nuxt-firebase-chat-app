@@ -1,16 +1,7 @@
 <template>
   <div id='app'>
     <div class='row'>
-      <div class='main-menu col-sm-12 col-md-3'>
-        <div class='menu-header'>
-          <h2 class='header-title'>Chat App</h2>
-          <div v-if='user && user.uid' key='login' class='header-user-info'>
-            <img class='header-user-image' :src='user.photoURL' width='40' height='40'>
-            <p class='header-user-name'>{{ user.displayName }}</p>
-            <b-button variant='primary btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
-          </div>
-        </div>
-      </div>
+      <MainMenu />
 
       <div class='col-md-9 col-md-offset-3'>
         <div v-if='user && user.uid'>
@@ -35,12 +26,14 @@
 <script>
 import firebase from '@/plugins/firebase'
 import ChatItem from '@/components/ChatItem.vue'
+import MainMenu from '@/components/MainMenu.vue'
 import Form from '@/components/Form.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     ChatItem,
+    MainMenu,
     Form
   },
   created() {
@@ -60,13 +53,6 @@ export default {
     facebookLogin() {
       const provider = new firebase.auth.FacebookAuthProvider()
       firebase.auth().signInWithPopup(provider)
-    },
-    doLogout() {
-      firebase.auth().signOut()
-      this.$store.dispatch('writeUser', {})
-    },
-    checkUser() {
-      return !(this.user && this.user.uid)
     }
   },
   computed: {
@@ -103,11 +89,17 @@ export default {
     }
     .header-user-info {
       .header-user-image, .header-user-name, button {
-        display: inline-block;
         margin: 0 5px;
       }
       .header-user-image {
         border-radius: 20px;
+      }
+      .header-user-name {
+        padding-top: 10px;
+      }
+      button {
+        color: white;
+        padding: 10px 0 0;
       }
     }
   }

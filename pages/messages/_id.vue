@@ -1,32 +1,30 @@
 <template>
   <div id='app'>
-    <header class='header'>
-      <h1 class='header-title'>Chat App</h1>
-      <div v-if='user && user.uid' key='login' class='header-user-info'>
-        <img class='header-user-image' :src='user.photoURL' width='40' height='40'>
-        <p class='header-user-name'>{{ user.displayName }}</p>
-        <b-button variant='primary btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
+    <div class='row'>
+      <MainMenu />
+
+      <div class='col-md-9 col-md-offset-3'>
+        <h1>詳細</h1>
+        <div v-if='user && user.uid'>
+          <img class='header-user-image' :src='post.image' width='40' height='40'>
+          <p>{{post.name}}</p>
+          <p>{{post.message}}</p>
+        </div>
+        <nuxt-link to='/' class="btn btn-dark btn-sm">戻る</nuxt-link>
       </div>
-      <div v-else key='logout' class='header-login'>
-        <b-button variant='info btn-sm' type='button' @click='twitterLogin'>Twitter ログイン</b-button>
-        <b-button variant='info btn-sm' type='button' @click='googleLogin'>Google ログイン</b-button>
-      </div>
-    </header>
-    <h1>詳細</h1>
-    <div v-if='user && user.uid'>
-      <img class='header-user-image' :src='post.image' width='40' height='40'>
-      <p>{{post.name}}</p>
-      <p>{{post.message}}</p>
     </div>
-    <nuxt-link to='/' class="btn btn-dark btn-sm">戻る</nuxt-link>
   </div>
 </template>
 
 <script>
   import firebase from '@/plugins/firebase'
+  import MainMenu from '@/components/MainMenu.vue'
   import { mapGetters } from 'vuex'
 
   export default {
+    components: {
+      MainMenu
+    },
     async asyncData ({ params, store }) {
       await store.dispatch('INIT_SINGLE', params)
     },
