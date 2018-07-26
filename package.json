@@ -1,34 +1,18 @@
 {
-  "name": "nuxt-firebase-chat",
+  "name": "nuxt-firebase-chat-app",
   "version": "1.0.0",
-  "description": "Nuxt x Firebase Chat",
+  "description": "Next.js * Firebase * SSR",
   "author": "hayasakaharuka <sendaiharu@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
-    "copy": "rm -rf public/* && cp -R dist/* public/"
+    "setup": "npm run clean && npm run copyassets && npm run copystatic",
+    "clean": "mkdir -p public && rm -rf public/*",
+    "copyassets": "cp -R functions/nuxt/dist/ public/assets",
+    "copystatic": "cp -R src/static/* public",
+    "serve": "firebase serve",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
-    "bootstrap-vue": "^2.0.0-rc.11",
-    "firebase": "^5.2.0",
-    "nuxt": "^1.4.1",
-    "nuxt-firebase": "0.0.3",
-    "vue-nl2br": "0.0.5",
-    "vuex": "^3.0.1",
-    "vuexfire": "^2.3.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.15.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0",
-    "node-sass": "^4.9.2",
-    "sass-loader": "^7.0.3"
+    "eslint": "^5.2.0"
   }
 }

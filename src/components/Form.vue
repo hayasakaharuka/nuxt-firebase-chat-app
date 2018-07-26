@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class='image-upload'>
-      <h2>画像</h2>
-      <img v-show='uploadedImage' :src='uploadedImage' />
-      <input type='file' v-on:change='onFileChange'>
-    </div>
+    <!--<div class='image-upload'>-->
+      <!--<h2>画像</h2>-->
+      <!--<img v-show='uploadedImage' :src='uploadedImage' />-->
+      <!--<input type='file' v-on:change='onFileChange'>-->
+    <!--</div>-->
     <form action='' @submit.prevent='doSend' class='form'>
       <b-textarea
         v-model='input'
@@ -31,20 +31,24 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       this.$store.dispatch('writeUser', user)
     })
-    const cdd = firebase.storage().ref()
-    console.log(cdd)
   },
   methods: {
     doSend() {
       const usr = this.user
       if (usr.uid && this.input.length) {
-        firebase.database().ref('messages').push({
+        firebase.firestore().collection('messages').add({
           message: this.input,
           name: usr.displayName,
-          image: usr.photoURL
-        }, () => {
-          this.input = ''
+          image: usr.photoURL,
+          created_at: new Date()
         })
+        .then(docRef => {
+          console.log('Document written with ID: ', docRef.id)
+        })
+        .catch(error => {
+          console.error('Error adding document: ', error)
+        })
+        this.input = ''
       }
     },
     checkUser() {

@@ -1,6 +1,6 @@
 <template>
   <transition-group name='chat' tag='div' class='list content'>
-    <section v-for='{ key, name, image, message } in chat' :key='key' class='item'>
+    <section v-for='{ id, name, image, message } in chat' :key='id' class='item'>
       <div class='item-image'><img :src='image' width='40' height='40'></div>
       <div class='item-detail'>
         <div class='item-name'>{{ name }}</div>
@@ -8,7 +8,7 @@
           <nl2br tag='div' :text='message'/>
         </div>
       </div>
-      <nuxt-link :to="`/messages/${key}`" class="btn btn-dark btn-sm">詳細</nuxt-link>
+      <nuxt-link :to="`/messages/${id}`" class="btn btn-dark btn-sm">詳細</nuxt-link>
     </section>
   </transition-group>
 </template>
@@ -28,32 +28,22 @@ export default {
     }
   },
   created() {
-    const ref_message = firebase.database().ref('messages')
+    const db = firebase.firestore().collection('messages');
     if (this.user) {
-      // message に変更があったときのハンドラを登録
-      ref_message.limitToLast(10).on('child_added', this.childAdded)
-    } else {
-      // message に変更があったときのハンドラを解除
-      ref_message.limitToLast(10).off('child_added', this.childAdded)
+      db.orderBy('created_at', 'asc').onSnapshot(querySnapshot => {
+        this.chat = [];
+        querySnapshot.forEach((doc) => {
+          this.chat.push(Object.assign({ id: doc.id }, doc.data()));
+          this.scrollBottom()
+        })
+      })
     }
   },
   methods: {
-    // スクロール位置を一番下に移動
     scrollBottom() {
       this.$nextTick(() => {
         window.scrollTo(0, document.body.clientHeight)
       })
-    },
-    // 受け取ったメッセージをchatに追加
-    childAdded(snap) {
-      const message = snap.val()
-      this.chat.push({
-        key: snap.key,
-        name: message.name,
-        image: message.image,
-        message: message.message
-      })
-      this.scrollBottom()
     }
   },
   computed: {
