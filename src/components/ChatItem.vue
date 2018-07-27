@@ -9,6 +9,8 @@
         </div>
       </div>
       <nuxt-link :to="`/messages/${id}`" class="btn btn-dark btn-sm">詳細</nuxt-link>
+      <b-button @click='deleteMessage(id)' class="btn btn-danger btn-sm">削除</b-button>
+
     </section>
   </transition-group>
 </template>
@@ -44,6 +46,13 @@ export default {
       this.$nextTick(() => {
         window.scrollTo(0, document.body.clientHeight)
       })
+    },
+    deleteMessage(id) {
+      firebase.firestore().collection('messages').doc(id).delete().then(() => {
+        console.log("Document successfully deleted!");
+      }).catch(error => {
+        console.error("Error removing document: ", error);
+      });
     }
   },
   computed: {

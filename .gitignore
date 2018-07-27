@@ -12,10 +12,12 @@ dist
 
 .envrc
 .firebaserc
-package-lock.json
 
 public/
 
 *.log
 
 .idea/
+
+functions/nuxt/
+
