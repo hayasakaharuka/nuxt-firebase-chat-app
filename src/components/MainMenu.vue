@@ -5,7 +5,9 @@
       <div v-if='user && user.uid' key='login' class='header-user-info'>
         <img class='header-user-image' :src='user.photoURL' width='40' height='40'>
         <p class='header-user-name'>{{ user.displayName }}</p>
-        <b-button variant='link btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
+        <div class='action-menu'>
+          <b-button variant='link btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
+        </div>
       </div>
     </div>
   </div>
@@ -41,7 +43,7 @@
 
 <style lang='scss' scoped>
   .main-menu {
-    background: #00608d;
+    background: #1a1a1a;
     color: #fff;
     padding: 0 1em;
     z-index: 100;
@@ -53,8 +55,12 @@
     }
     .header-title {
       line-height: 70px;
+      color: #f6006c;
+      font-family: 'Impact';
+      font-size: 48px;
     }
     .header-user-info {
+      font-weight: bold;
       .header-user-image, .header-user-name, button {
         margin: 0 5px;
       }
@@ -64,9 +70,14 @@
       .header-user-name {
         padding-top: 10px;
       }
-      button {
-        color: white;
-        padding: 10px 0 0;
+      .action-menu {
+        border-top: 1px solid #aaaab0;
+        margin-top: 24px;
+        button {
+          color: white;
+          font-weight: bold;
+          padding: 10px 0 0;
+        }
       }
     }
   }

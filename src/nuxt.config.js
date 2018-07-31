@@ -23,7 +23,8 @@ module.exports = {
     '@/assets/scss/app.scss'
   ],
   modules: [
-    ['bootstrap-vue/nuxt', { css: false }]
+    ['bootstrap-vue/nuxt', { css: false }],
+    '@nuxtjs/moment'
   ],
   mode: 'spa',
   /*

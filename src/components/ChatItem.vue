@@ -1,15 +1,18 @@
 <template>
   <transition-group name='chat' tag='div' class='list content'>
-    <section v-for='{ id, name, image, message } in chat' :key='id' class='item'>
+    <section v-for='{ id, name, image, message, created_at } in chat' :key='id' class='item'>
       <div class='item-image'><img :src='image' width='40' height='40'></div>
       <div class='item-detail'>
-        <div class='item-name'>{{ name }}</div>
+        <div class='item-name'>
+          {{ name }}
+          <span class='date'>{{$moment(created_at).format('YYYY/MM/DD HH:mm:ss')}}</span>
+        </div>
         <div class='item-message'>
           <nl2br tag='div' :text='message'/>
         </div>
       </div>
-      <nuxt-link :to="`/messages/${id}`" class="btn btn-dark btn-sm">詳細</nuxt-link>
-      <b-button @click='deleteMessage(id)' class="btn btn-danger btn-sm">削除</b-button>
+      <nuxt-link :to="`/messages/${id}`" class="btn btn-dark btn-sm">Detail</nuxt-link>
+      <b-button @click='deleteMessage(id)' class="btn btn-danger btn-sm">Delete</b-button>
 
     </section>
   </transition-group>
@@ -67,41 +70,37 @@ export default {
     padding: 40px 10px 30px;
     max-width: 600px;
   }
-
   .list {
     margin-bottom: 100px;
   }
-
   .item {
     position: relative;
     display: flex;
     align-items: flex-end;
     margin-bottom: 0.8em;
   }
-
   .item-image img {
     border-radius: 20px;
     vertical-align: top;
   }
-
   .item-detail {
     margin: 0 0 0 1.4em;
   }
-
   .item-name {
     font-size: 75%;
+    position: absolute;
+    font-weight: bold;
   }
-
   .item-message {
     position: relative;
     display: inline-block;
     font-size: 14px;
     padding: 0.8em;
-    background: #deefe8;
+    background: #b4e73f;
     border-radius: 6px;
     line-height: 1.2em;
+    margin: 18px 8px 0 0;
   }
-
   .item-message::before {
     position: absolute;
     content: " ";
@@ -109,14 +108,23 @@ export default {
     left: -16px;
     bottom: 12px;
     border: 4px solid transparent;
-    border-right: 12px solid #deefe8;
+    border-right: 12px solid #b4e73f;
   }
-
+  .date {
+    font-size: 10px;
+    color: #808080;
+    display: inline-block;
+    margin-left: 8px;
+  }
+  .btn {
+    font-weight: bold;
+    font-family: 'Tahoma';
+    padding: 2px 8px;
+  }
   /* トランジション用スタイル */
   .chat-enter-active {
     transition: all 1s;
   }
-
   .chat-enter {
     opacity: 0;
     transform: translateX(-1em);

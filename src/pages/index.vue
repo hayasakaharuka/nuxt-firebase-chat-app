@@ -74,7 +74,7 @@ export default {
     padding: 0;
   }
   .main-menu {
-    background: #00608d;
+    background: #1a1a1a;
     color: #fff;
     padding: 0 1em;
     z-index: 100;
@@ -103,7 +103,6 @@ export default {
       }
     }
   }
-
   .login-buttons {
     padding: 20px 0 30px;
     margin: 70px auto 0;
@@ -115,6 +114,9 @@ export default {
     text-align: center;
     .title {
       margin-bottom: 30px;
+      color: #f6006c;
+      font-family: 'Impact';
+      font-size: 48px;
     }
     .btn {
       display: block;

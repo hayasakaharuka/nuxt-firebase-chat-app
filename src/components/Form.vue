@@ -99,10 +99,12 @@ export default {
 
     &::placeholder {
       color: lightgray;
+      font-family: 'Tahoma';
     }
   }
 
   .send-button {
     height: 3em;
+    font-family: 'Tahoma';
   }
 </style>
