@@ -67,7 +67,7 @@ export default {
     box-sizing: border-box;
   }
   #app {
-    background-color: #f3f3f3;
+    background-color: rgba(0, 0, 0, 0.7);
     min-height: 100vh;
   }
   .container, .col-md-9 {
@@ -114,7 +114,7 @@ export default {
     text-align: center;
     .title {
       margin-bottom: 30px;
-      color: #f6006c;
+      color: #1ac2ca;
       font-family: 'Impact';
       font-size: 48px;
     }

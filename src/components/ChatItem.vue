@@ -11,8 +11,10 @@
           <nl2br tag='div' :text='message'/>
         </div>
       </div>
-      <nuxt-link :to="`/messages/${id}`" class="btn btn-dark btn-sm">Detail</nuxt-link>
-      <b-button @click='deleteMessage(id)' class="btn btn-danger btn-sm">Delete</b-button>
+      <nuxt-link :to="`/messages/${id}`">
+        <i class="fa fa-search"></i>
+      </nuxt-link>
+      <i class="fa fa-trash-o delete-icon" @click='deleteMessage(id)'></i>
 
     </section>
   </transition-group>
@@ -90,13 +92,14 @@ export default {
     font-size: 75%;
     position: absolute;
     font-weight: bold;
+    color: white;
   }
   .item-message {
     position: relative;
     display: inline-block;
     font-size: 14px;
     padding: 0.8em;
-    background: #b4e73f;
+    background: white;
     border-radius: 6px;
     line-height: 1.2em;
     margin: 18px 8px 0 0;
@@ -108,11 +111,11 @@ export default {
     left: -16px;
     bottom: 12px;
     border: 4px solid transparent;
-    border-right: 12px solid #b4e73f;
+    border-right: 12px solid white;
   }
   .date {
     font-size: 10px;
-    color: #808080;
+    color: #ececec;
     display: inline-block;
     margin-left: 8px;
   }
@@ -120,6 +123,11 @@ export default {
     font-weight: bold;
     font-family: 'Tahoma';
     padding: 2px 8px;
+  }
+  .delete-icon {
+    color: white;
+    cursor: pointer;
+    margin: 0 0 3px 10px;
   }
   /* トランジション用スタイル */
   .chat-enter-active {

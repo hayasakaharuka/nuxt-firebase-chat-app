@@ -81,7 +81,6 @@ export default {
     bottom: 0;
     height: 100px;
     width: 75%;
-    background: #f5f5f5;
     @media (max-width: 767px) {
       width: 100%;
     }

@@ -6,7 +6,7 @@
         <img class='header-user-image' :src='user.photoURL' width='40' height='40'>
         <p class='header-user-name'>{{ user.displayName }}</p>
         <div class='action-menu'>
-          <b-button variant='link btn-sm' type='button' @click='doLogout'>ログアウト</b-button>
+          <b-button variant='link btn-sm' type='button' @click='doLogout'>Log out</b-button>
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@
     }
     .header-title {
       line-height: 70px;
-      color: #f6006c;
+      color: #1ac2ca;
       font-family: 'Impact';
       font-size: 48px;
     }
@@ -71,7 +71,7 @@
         padding-top: 10px;
       }
       .action-menu {
-        border-top: 1px solid #aaaab0;
+        border-top: 3px solid #1ac2ca;
         margin-top: 24px;
         button {
           color: white;

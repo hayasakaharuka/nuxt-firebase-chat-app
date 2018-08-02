@@ -24,7 +24,8 @@ module.exports = {
   ],
   modules: [
     ['bootstrap-vue/nuxt', { css: false }],
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/font-awesome'
   ],
   mode: 'spa',
   /*
