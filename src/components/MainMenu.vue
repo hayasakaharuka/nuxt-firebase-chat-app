@@ -43,7 +43,7 @@
 
 <style lang='scss' scoped>
   .main-menu {
-    background: #1a1a1a;
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     padding: 0 1em;
     z-index: 100;

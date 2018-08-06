@@ -16,6 +16,12 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background: url('~/assets/images/bg.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;

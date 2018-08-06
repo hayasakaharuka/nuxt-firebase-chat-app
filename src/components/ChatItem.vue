@@ -3,19 +3,22 @@
     <section v-for='{ id, name, image, message, created_at } in chat' :key='id' class='item'>
       <div class='item-image'><img :src='image' width='40' height='40'></div>
       <div class='item-detail'>
-        <div class='item-name'>
-          {{ name }}
-          <span class='date'>{{$moment(created_at).format('YYYY/MM/DD HH:mm:ss')}}</span>
+        <div class='item-info'>
+          <div class='item-name'>
+            {{ name }}
+            <span class='date'>{{$moment(created_at).format('YYYY/MM/DD HH:mm:ss')}}</span>
+          </div>
+          <div class='item-action'>
+            <nuxt-link :to="`/messages/${id}`">
+              <i class="fa fa-search"></i>
+            </nuxt-link>
+            <i class="fa fa-trash-o delete-icon" @click='deleteMessage(id)'></i>
+          </div>
         </div>
         <div class='item-message'>
           <nl2br tag='div' :text='message'/>
         </div>
       </div>
-      <nuxt-link :to="`/messages/${id}`">
-        <i class="fa fa-search"></i>
-      </nuxt-link>
-      <i class="fa fa-trash-o delete-icon" @click='deleteMessage(id)'></i>
-
     </section>
   </transition-group>
 </template>
@@ -77,41 +80,48 @@ export default {
   }
   .item {
     position: relative;
-    display: flex;
+    // display: flex;
     align-items: flex-end;
     margin-bottom: 0.8em;
   }
-  .item-image img {
-    border-radius: 20px;
+  .item-image {
     vertical-align: top;
+    display: inline-block;
+  }
+  .item-image img {
+    border-radius: 6px;
   }
   .item-detail {
     margin: 0 0 0 1.4em;
+    display: inline-block;
+    vertical-align: top;
+    max-width: calc(100% - 65px);
   }
-  .item-name {
+  .item-info {
     font-size: 75%;
     position: absolute;
     font-weight: bold;
     color: white;
   }
+  .item-name {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .item-action {
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+  }
   .item-message {
+    color: white;
     position: relative;
     display: inline-block;
     font-size: 14px;
-    padding: 0.8em;
-    background: white;
+    padding: 0.8em 0.8em 0.8em 0;
     border-radius: 6px;
     line-height: 1.2em;
     margin: 18px 8px 0 0;
-  }
-  .item-message::before {
-    position: absolute;
-    content: " ";
-    display: block;
-    left: -16px;
-    bottom: 12px;
-    border: 4px solid transparent;
-    border-right: 12px solid white;
   }
   .date {
     font-size: 10px;
