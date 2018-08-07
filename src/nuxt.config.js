@@ -25,13 +25,17 @@ module.exports = {
   modules: [
     ['bootstrap-vue/nuxt', { css: false }],
     '@nuxtjs/moment',
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/axios'
   ],
   mode: 'spa',
   /*
   ** Build configuration
   */
+  buildDir: '../functions/nuxt',
   build: {
+    publicPath: '/assets/',
+    extractCSS: true,
     /*
     ** Run ESLint on save
     */

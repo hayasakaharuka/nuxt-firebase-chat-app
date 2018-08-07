@@ -6,7 +6,7 @@
         <div class='item-info'>
           <div class='item-name'>
             {{ name }}
-            <span class='date'>{{$moment(created_at).format('YYYY/MM/DD HH:mm:ss')}}</span>
+            <span class='date'>{{$moment(created_at.toDate()).format('YYYY/MM/DD HH:mm:ss')}}</span>
           </div>
           <div class='item-action'>
             <nuxt-link :to="`/messages/${id}`">
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
+import { firebase, firestore } from '@/plugins/firebase'
 import Nl2br from 'vue-nl2br'
 import { mapGetters } from 'vuex'
 
@@ -38,9 +38,8 @@ export default {
     }
   },
   created() {
-    const db = firebase.firestore().collection('messages');
     if (this.user) {
-      db.orderBy('created_at', 'asc').onSnapshot(querySnapshot => {
+      firestore.collection('messages').orderBy('created_at', 'asc').onSnapshot(querySnapshot => {
         this.chat = [];
         querySnapshot.forEach((doc) => {
           this.chat.push(Object.assign({ id: doc.id }, doc.data()));
@@ -56,7 +55,7 @@ export default {
       })
     },
     deleteMessage(id) {
-      firebase.firestore().collection('messages').doc(id).delete().then(() => {
+      firestore.collection('messages').doc(id).delete().then(() => {
         console.log("Document successfully deleted!");
       }).catch(error => {
         console.error("Error removing document: ", error);

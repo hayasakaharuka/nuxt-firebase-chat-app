@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import firebase from '@/plugins/firebase'
+  import { firebase } from '@/plugins/firebase'
   import MainMenu from '@/components/MainMenu.vue'
   import { mapGetters } from 'vuex'
 

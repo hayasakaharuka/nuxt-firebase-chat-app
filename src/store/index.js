@@ -1,4 +1,4 @@
-import firebase from '~/plugins/firebase'
+import { firebase } from '~/plugins/firebase'
 import { firebaseMutations } from 'vuexfire'
 
 export const strict = false;

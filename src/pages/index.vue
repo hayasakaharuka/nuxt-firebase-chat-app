@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
+import { firebase } from '@/plugins/firebase'
 import ChatItem from '@/components/ChatItem.vue'
 import MainMenu from '@/components/MainMenu.vue'
 import Form from '@/components/Form.vue'

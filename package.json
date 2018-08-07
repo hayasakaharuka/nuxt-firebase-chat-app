@@ -13,6 +13,7 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "eslint": "^5.2.0"
+    "eslint": "^5.2.0",
+    "firebase-tools": "^4.0.3"
   }
 }

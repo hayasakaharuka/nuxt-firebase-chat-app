@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import firebase from '@/plugins/firebase'
+  import { firebase } from '@/plugins/firebase'
   import ChatItem from '@/components/ChatItem.vue'
   import Form from '@/components/Form.vue'
   import { mapGetters } from 'vuex'

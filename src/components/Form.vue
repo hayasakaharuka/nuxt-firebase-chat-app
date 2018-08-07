@@ -17,8 +17,10 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
+import { firebase } from '@/plugins/firebase'
 import { mapGetters } from 'vuex'
+
+import axios from 'axios'
 
 export default {
   data() {
@@ -36,18 +38,11 @@ export default {
     doSend() {
       const usr = this.user
       if (usr.uid && this.input.length) {
-        firebase.firestore().collection('messages').add({
-          message: this.input,
-          name: usr.displayName,
-          image: usr.photoURL,
-          created_at: new Date()
-        })
-        .then(docRef => {
-          console.log('Document written with ID: ', docRef.id)
-        })
-        .catch(error => {
-          console.error('Error adding document: ', error)
-        })
+        let params = new URLSearchParams();
+        params.append('name', usr.displayName);
+        params.append('text', this.input);
+        params.append('image', usr.photoURL);
+        axios.post('https://us-central1-nuxt-firebase-chat.cloudfunctions.net/addMessage', params)
         this.input = ''
       }
     },
