@@ -42,7 +42,7 @@ export default {
         params.append('name', usr.displayName);
         params.append('text', this.input);
         params.append('image', usr.photoURL);
-        axios.post('https://us-central1-nuxt-firebase-chat.cloudfunctions.net/addMessage', params)
+        axios.post(`${process.env.apiBaseUrl}/addMessage`, params)
         this.input = ''
       }
     },

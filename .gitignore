@@ -21,3 +21,5 @@ public/
 
 functions/nuxt/
 
+src/environments/env.development.js
+src/environments/env.production.js

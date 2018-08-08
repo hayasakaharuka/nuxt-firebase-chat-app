@@ -1,4 +1,6 @@
 const webpack = require('webpack')
+const environment = process.env.NODE_ENV || 'development';
+const envSet = require(`./environments/env.${environment}.js`)
 
 module.exports = {
   /*
@@ -29,6 +31,7 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   mode: 'spa',
+  env: envSet,
   /*
   ** Build configuration
   */

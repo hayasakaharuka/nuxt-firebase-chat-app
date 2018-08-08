@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "build:prod": "cross-env NODE_ENV=production nuxt build",
     "start": "nuxt start",
+    "start:prod": "cross-env NODE_ENV=production nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
@@ -22,6 +24,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
     "firebase": "^5.2.0",
     "fs": "0.0.1-security",
     "jquery": "^1.9.1",

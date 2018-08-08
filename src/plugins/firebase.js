@@ -2,12 +2,12 @@ import firebase from 'firebase'
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    apiKey: process.env.APIKEY,
-    authDomain: process.env.AUTHDOMAIN,
-    databaseURL: process.env.DATABASEURL,
-    projectId: process.env.PROJECTID,
-    storageBucket: process.env.STORAGEBUCKET,
-    messagingSenderId: process.env.MESSAGINGSENDERID
+    apiKey: process.env.firebase.APIKEY,
+    authDomain: process.env.firebase.AUTHDOMAIN,
+    databaseURL: process.env.firebase.DATABASEURL,
+    projectId: process.env.firebase.PROJECTID,
+    storageBucket: process.env.firebase.STORAGEBUCKET,
+    messagingSenderId: process.env.firebase.MESSAGINGSENDERID
   })
 }
 

@@ -10,7 +10,8 @@
     "copyassets": "cp -R functions/nuxt/dist/ public/assets",
     "copy": "cp -R functions/nuxt/dist/ public/assets && cp -R src/dist/* public",
     "serve": "firebase serve",
-    "deploy": "firebase deploy"
+    "deploy": "firebase use development; firebase deploy",
+    "deploy:prod": "firebase use default; firebase deploy; firebase use development;"
   },
   "dependencies": {
     "eslint": "^5.2.0",

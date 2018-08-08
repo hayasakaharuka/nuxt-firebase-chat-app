@@ -18,10 +18,10 @@ exports.addMessage = functions.https.onRequest((req, res) => {
       name: userName,
       image: userPhoto,
       created_at: new Date()
-    }).then(snapshot => {
-      console.log(snapshot);
+    }).then((docRef) => {
+      res.status(200).send('Successed post message. ID: ', docRef.id);
     }).catch(error => {
-      console.log(error);
+      res.status(500).send(error);
     })
   })
 });
