@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const environment = process.env.NODE_ENV || 'development';
+const environment = 'production' || process.env.NODE_ENV || 'development';
 const envSet = require(`./environments/env.${environment}.js`)
 
 module.exports = {
@@ -32,6 +32,9 @@ module.exports = {
   ],
   mode: 'spa',
   env: envSet,
+  axios: {
+    credentials: false
+  },
   /*
   ** Build configuration
   */

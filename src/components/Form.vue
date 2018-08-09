@@ -6,11 +6,11 @@
       <!--<input type='file' v-on:change='onFileChange'>-->
     <!--</div>-->
     <form action='' @submit.prevent='doSend' class='form'>
-      <b-textarea
+      <textarea
         v-model='input'
         :disabled='checkUser()'
         @keydown.enter.exact.prevent='doSend'
-        placeholder='Message'></b-textarea>
+        placeholder='Message'></textarea>
       <b-button type='submit' :disabled='checkUser()' variant='info send-button'>Send</b-button>
     </form>
   </div>
@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default {
+
   data() {
     return {
       input: '',
@@ -42,7 +43,11 @@ export default {
         params.append('name', usr.displayName);
         params.append('text', this.input);
         params.append('image', usr.photoURL);
+        params.append('Access-Control-Allow-Origin', '*')
         axios.post(`${process.env.apiBaseUrl}/addMessage`, params)
+          .then((res) => {
+            console.log(res.data)
+          })
         this.input = ''
       }
     },
@@ -82,14 +87,18 @@ export default {
   }
 
   .form textarea {
+    background: rgba(255, 255, 255, .7);
     border: 1px solid #ccc;
     border-radius: 2px;
     font-weight: bold;
-    height: 3em;
-    line-height: 3em;
-    padding: 0 .5em;
+    height: 4em;
+    line-height: 1em;
+    padding: .5em;
     resize: none;
-    width: calc(100% - 6em);
+    width: calc(100% - 15em);
+    @media (max-width: 767px) {
+      width: calc(100% - 6em);
+    }
 
     &::placeholder {
       color: lightgray;
@@ -98,7 +107,7 @@ export default {
   }
 
   .send-button {
-    height: 3em;
+    height: 4em;
     font-family: 'Tahoma';
   }
 </style>
