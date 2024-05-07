@@ -4,7 +4,7 @@
       <MainMenu />
 
       <div class='col-md-9 col-md-offset-3'>
-        <h1>詳細</h1>
+        <h1>詳細aaa</h1>
         <div v-if='user && user.uid'>
           <img class='header-user-image' :src='post.image' width='40' height='40'>
           <p>{{post.name}}</p>
